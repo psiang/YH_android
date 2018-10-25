@@ -7,7 +7,16 @@
     <color name="textColorHint">#A0A0A0</color>
     <color name="textColorVice">#6C6C6C</color>
     <color name="viewLineColor">#F0F0F0</color>
+    <!--定义项目主色方案-->
     <color name="YHColor_ChineseRed">#C4262A</color>
     <color name="YHColor_Golden">#958547</color>
     <color name="YHColor_WhiteGray">#FAFAFA</color>
+    <!--定义项目配色方案-->
+    <color name="YHColor_DarkRed">#B31800</color>
+    <color name="YHColor_LightGray">#F5F6EB</color>
+    <color name="YHColor_PureGray">#EFF0DC</color>
+    <color name="YHColor_DarkGray">#C9CABB</color>
+    <color name="YHColor_Black">#34352C</color>
+    <color name="YHColor_tapBackColor">#F2FAFF</color>
+    <color name="YHColor_tabBar_DarkRed">#C82932</color>
 </resources>

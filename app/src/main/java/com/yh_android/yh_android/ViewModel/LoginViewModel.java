@@ -4,9 +4,12 @@ import android.app.Application;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
+import android.databinding.adapters.TextViewBindingAdapter;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 
 import me.goldze.mvvmhabit.base.BaseViewModel;
@@ -25,14 +28,9 @@ public class LoginViewModel extends BaseViewModel {
     //密码的绑定
     public ObservableField<String> password = new ObservableField<>("");
     //用户名清除按钮的显示隐藏绑定
-    public ObservableInt clearBtnVisibility = new ObservableInt();
-    //封装一个界面发生改变的观察者
-    public UIChangeObservable uc = new UIChangeObservable();
-
-    public class UIChangeObservable {
-        //密码开关观察者
-        public ObservableBoolean pSwitchObservable = new ObservableBoolean(false);
-    }
+    public ObservableInt clearUsernameBtnVisibility = new ObservableInt(View.INVISIBLE);
+    //密码清除按钮的显示隐藏绑定
+    public ObservableInt clearPasswordBtnVisibility = new ObservableInt(View.INVISIBLE);
 
     /*private Handler loginHandler;
     private Runnable loginRunnable;*/
@@ -48,25 +46,39 @@ public class LoginViewModel extends BaseViewModel {
             userName.set("");
         }
     });
-    //密码显示开关  (你可以尝试着狂按这个按钮,会发现它有防多次点击的功能)
-    public BindingCommand passwordShowSwitchOnClickCommand = new BindingCommand(new BindingAction() {
+
+    //清除密码的点击事件, 逻辑从View层转换到ViewModel层
+    public BindingCommand clearPasswordOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            //让观察者的数据改变,逻辑从ViewModel层转到View层，在View层的监听则会被调用
-            uc.pSwitchObservable.set(!uc.pSwitchObservable.get());
+            password.set("");
         }
     });
-    //用户名输入框焦点改变的回调事件
-    public BindingCommand<Boolean> onFocusChangeCommand = new BindingCommand<>(new BindingConsumer<Boolean>() {
+
+    //用户名输入框是否有文字
+    public BindingCommand onUsernameEmptyCommand = new BindingCommand(new BindingConsumer<String>() {
         @Override
-        public void call(Boolean hasFocus) {
-            if (hasFocus) {
-                clearBtnVisibility.set(View.VISIBLE);
+        public void call(String input) {
+            if (input.length() == 0) {
+                clearUsernameBtnVisibility.set(View.INVISIBLE);
             } else {
-                clearBtnVisibility.set(View.INVISIBLE);
+                clearUsernameBtnVisibility.set(View.VISIBLE);
             }
         }
     });
+
+    //密码输入框是否有文字
+    public BindingCommand onPasswordEmptyCommand = new BindingCommand(new BindingConsumer<String>() {
+        @Override
+        public void call(String input) {
+            if (input.length() == 0) {
+                clearPasswordBtnVisibility.set(View.INVISIBLE);
+            } else {
+                clearPasswordBtnVisibility.set(View.VISIBLE);
+            }
+        }
+    });
+
     //登录按钮的点击事件
     public BindingCommand loginOnClickCommand = new BindingCommand(new BindingAction() {
         @Override

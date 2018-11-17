@@ -10,7 +10,16 @@ import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.yh_android.yh_android.Activity.LoginActivity;
+import com.yh_android.yh_android.R;
 
 import me.goldze.mvvmhabit.base.BaseViewModel;
 import me.goldze.mvvmhabit.binding.command.BindingAction;
@@ -32,6 +41,7 @@ public class LoginViewModel extends BaseViewModel {
     //密码清除按钮的显示隐藏绑定
     public ObservableInt clearPasswordBtnVisibility = new ObservableInt(View.INVISIBLE);
 
+    private PopupWindow mPopWindow;
     /*private Handler loginHandler;
     private Runnable loginRunnable;*/
 
@@ -83,9 +93,42 @@ public class LoginViewModel extends BaseViewModel {
     public BindingCommand loginOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            login();
+            showPopupWindow();
+            //login();
         }
     });
+
+    private void showPopupWindow() {
+        //设置contentView
+        View contentView = LayoutInflater.from(LoginActivity.getContext()).inflate(R.layout.pop_login_alert, null);
+        mPopWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        mPopWindow.setContentView(contentView);
+        //设置各个控件的点击响应
+        TextView tv1 = (TextView)contentView.findViewById(R.id.pop_computer);
+        TextView tv2 = (TextView)contentView.findViewById(R.id.pop_financial);
+        TextView tv3 = (TextView)contentView.findViewById(R.id.pop_manage);
+        tv1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPopWindow.dismiss();
+            }
+        });
+        tv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPopWindow.dismiss();
+            }
+        });
+        tv3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPopWindow.dismiss();
+            }
+        });
+        //显示PopupWindow
+        View rootview = LayoutInflater.from(LoginActivity.getContext()).inflate(R.layout.activity_login, null);
+        mPopWindow.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);
+    }
 
     /**
      * 网络模拟一个登陆操作

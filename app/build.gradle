@@ -21,7 +21,8 @@ android {
             res.srcDirs =
                     [
                             'src/main/res/layout/Login',
-                            'src/main/res/layout/Other',
+                            'src/main/res/layout/Pop',
+                            'src/main/res/layout',
                             'src/main/res'
                     ]
         }

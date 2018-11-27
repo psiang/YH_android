@@ -1,31 +1,19 @@
-package com.yh_android.yh_android.ViewModel;
+package com.yh_android.yh_android.view_model;
 
 import android.app.Application;
-import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
-import android.databinding.adapters.TextViewBindingAdapter;
-import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.PopupWindow;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.yh_android.yh_android.Activity.LoginActivity;
-import com.yh_android.yh_android.R;
+import com.yh_android.yh_android.activity.TabBarActivity;
 
 import me.goldze.mvvmhabit.base.BaseViewModel;
 import me.goldze.mvvmhabit.binding.command.BindingAction;
 import me.goldze.mvvmhabit.binding.command.BindingCommand;
 import me.goldze.mvvmhabit.binding.command.BindingConsumer;
-import me.goldze.mvvmhabit.utils.ToastUtils;
 
 /**
  * Created by goldze on 2017/7/17.
@@ -93,12 +81,12 @@ public class LoginViewModel extends BaseViewModel {
     public BindingCommand loginOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            showPopupWindow();
-            //login();
+            //showPopupWindow();
+            login();
         }
     });
 
-    private void showPopupWindow() {
+    /*private void showPopupWindow() {
         //设置contentView
         View contentView = LayoutInflater.from(LoginActivity.getContext()).inflate(R.layout.pop_login_alert, null);
         mPopWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
@@ -128,20 +116,21 @@ public class LoginViewModel extends BaseViewModel {
         //显示PopupWindow
         View rootview = LayoutInflater.from(LoginActivity.getContext()).inflate(R.layout.activity_login, null);
         mPopWindow.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);
-    }
+    }*/
 
     /**
      * 网络模拟一个登陆操作
      **/
     private void login() {
-        if (TextUtils.isEmpty(userName.get())) {
+        /*if (TextUtils.isEmpty(userName.get())) {
             //ToastUtils.showShort("请输入账号！");
             return;
         }
         if (TextUtils.isEmpty(password.get())) {
             //ToastUtils.showShort("请输入密码！");
             return;
-        }
+        }*/
+        startActivity(TabBarActivity.class);
         /*//showDialog();
         //进入DemoActivity页面
         loginRunnable = new Runnable() {

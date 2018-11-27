@@ -15,4 +15,5 @@
     <color name="YHColor_ChineseRed">#C4262A</color>
     <color name="YHColor_Golden">#958547</color>
     <color name="YHColor_WhiteGray">#FAFAFA</color>
+    <color name="YHColor_Gray">#C7C7DB</color>
 </resources>

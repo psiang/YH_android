@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.yh_android.yh_android.ViewModel.LoginViewModel" />
+            type="com.yh_android.yh_android.view_model.LoginViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout

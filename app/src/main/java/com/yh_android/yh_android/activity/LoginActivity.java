@@ -1,18 +1,13 @@
-package com.yh_android.yh_android.Activity;
+package com.yh_android.yh_android.activity;
 
-import android.Manifest;
 import android.arch.lifecycle.*;
 import android.content.Context;
-import android.databinding.Observable;
 import android.os.Bundle;
-import android.support.v4.content.res.ResourcesCompat;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 
 import com.yh_android.yh_android.BR;
 import com.yh_android.yh_android.R;
 import com.yh_android.yh_android.databinding.ActivityLoginBinding;
-import com.yh_android.yh_android.ViewModel.LoginViewModel;
+import com.yh_android.yh_android.view_model.LoginViewModel;
 
 import me.goldze.mvvmhabit.base.BaseActivity;
 
